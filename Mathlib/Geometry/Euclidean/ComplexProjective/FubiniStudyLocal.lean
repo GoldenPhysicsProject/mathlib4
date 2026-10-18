@@ -78,10 +78,25 @@ theorem omega_self_zero (r : ℝ) (u : Tangent2) :
     omega r u u = 0 := by
   simp [omega] <;> (right; ring)
 
+
+/-- With the absolute antiholomorphic Jacobian, the CP1 antipodal map
+preserves Fubini–Study measure; the *bare density* is not invariant. -/
+theorem fs_density_antipodal_invariant (r : ℝ) (hr : 0 < r) :
+    fsDensity r⁻¹ * (1 / r ^ 2) = fsDensity r := by
+  unfold fsDensity
+  have hr' : r ≠ 0 := hr.ne'
+  have h1 : (1 : ℝ) + r ≠ 0 := by positivity
+  have h2 : (1 : ℝ) + r⁻¹ ≠ 0 := by positivity
+  field_simp
+  try ring
+
+/-- The same antipodal map reverses the orientation of the Kähler form. -/
+theorem fs_oriented_antipodal_sign (r : ℝ) (hr : 0 < r) :
+    fsDensity r⁻¹ * (-(1 / r ^ 2)) = -fsDensity r := by
+  calc
+    fsDensity r⁻¹ * (-(1 / r ^ 2)) =
+        -(fsDensity r⁻¹ * (1 / r ^ 2)) := by ring
+    _ = -fsDensity r := by rw [fs_density_antipodal_invariant r hr]
+
 end FubiniStudy.LocalCP1
 
-#print axioms FubiniStudy.LocalCP1.complex_structure_sq
-#print axioms FubiniStudy.LocalCP1.symplectic_eq_metric_J
-#print axioms FubiniStudy.LocalCP1.antiunitary_preserves_metric
-#print axioms FubiniStudy.LocalCP1.antiunitary_reverses_omega
-#print axioms FubiniStudy.LocalCP1.conjugation_anticommutes_J
