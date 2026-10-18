@@ -99,4 +99,3 @@ theorem fs_oriented_antipodal_sign (r : ℝ) (hr : 0 < r) :
     _ = -fsDensity r := by rw [fs_density_antipodal_invariant r hr]
 
 end FubiniStudy.LocalCP1
-
