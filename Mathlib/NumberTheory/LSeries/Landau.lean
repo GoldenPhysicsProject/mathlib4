@@ -5,8 +5,8 @@ Authors: Daniel Toupin
 -/
 module
 
-public import Mathlib.NumberTheory.LSeries.Positivity
 public import Mathlib.Analysis.SpecialFunctions.Exponential
+public import Mathlib.NumberTheory.LSeries.Positivity
 
 import Mathlib.Analysis.Complex.TaylorSeries
 
